@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC6B34DC-2B20-42CE-9739-C7B9A00B55A3}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageTracker</RootNamespace>
+    <AssemblyName>ImageTracker</AssemblyName>
+    <SilverlightVersion>v4.0</SilverlightVersion>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>ImageTracker.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>ImageTracker.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="WP7Contrib.Collections, Version=1.0.0.16, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Work\Doodle\packages\WP7Contrib.Core.1.0.0.16\lib\sl4-wp71\WP7Contrib.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="WP7Contrib.Common, Version=1.0.0.16, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Work\Doodle\packages\WP7Contrib.Core.1.0.0.16\lib\sl4-wp71\WP7Contrib.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WP7Contrib.Diagnostics, Version=1.0.0.16, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Work\Doodle\packages\WP7Contrib.Core.1.0.0.16\lib\sl4-wp71\WP7Contrib.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="WP7Contrib.Logging, Version=1.0.0.16, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Work\Doodle\packages\WP7Contrib.Core.1.0.0.16\lib\sl4-wp71\WP7Contrib.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="WP7Contrib.View.Controls, Version=1.0.0.16, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Work\Doodle\packages\WP7Contrib.Controls.1.0.0.16\lib\sl4-wp71\WP7Contrib.View.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="WP7Contrib.View.Transitions, Version=1.0.0.16, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\Work\Doodle\packages\WP7Contrib.Controls.1.0.0.16\lib\sl4-wp71\WP7Contrib.View.Transitions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImagePage.xaml.cs">
+      <DependentUpon>ImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditSessionPage.xaml.cs">
+      <DependentUpon>EditSessionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PanoramaPage.xaml.cs">
+      <DependentUpon>PanoramaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="ImagePage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditSessionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PanoramaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\appbar.add.rest.png" />
+    <Content Include="Graphics\appbar.cancel.rest.png" />
+    <Content Include="Graphics\appbar.check.rest.png" />
+    <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageLibrary\ImageLibrary.csproj">
+      <Project>{780ACC85-830A-443C-A110-39605A11D421}</Project>
+      <Name>ImageLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
+      <Project>{DB88D773-0FC1-411D-B25C-8C990B2C2FF8}</Project>
+      <Name>ModelLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>
