@@ -1,0 +1,9 @@
+
+*.dll
+*.pdb
+ImageLibrary\obj\
+ImageLibrary\Bin\
+ImageTracker\obj\
+ImageTracker\Bin\
+ModelLibrary\obj\
+ModelLibrary\Bin\
