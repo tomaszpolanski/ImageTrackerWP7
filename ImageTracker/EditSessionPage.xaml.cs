@@ -104,7 +104,7 @@ namespace ImageTracker
             }
             else
             {
-                (App.Current as App).PhotoSessions.PhotoSessionCollection.Add(photoSession);
+                (App.Current as App).PhotoSessions.Add(photoSession);
             }
             
             NavigationService.GoBack();
@@ -118,11 +118,18 @@ namespace ImageTracker
         private void ShowApplicationBar(object sender, RoutedEventArgs e)
         {
             ApplicationBar.IsVisible = true;
+			
+			
         }
 
         private void HideApplicationBar(object sender, RoutedEventArgs e)
         {
             ApplicationBar.IsVisible = false;
+            TextBox box = (sender as TextBox);
+            if (box != null)
+            {
+                box.SelectAll();
+            }
         }
 
     }

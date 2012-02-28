@@ -171,13 +171,14 @@ namespace ModelLibrary
     {
         const string DataFile = "Test.xml";
 
-        public ObservableCollection<PhotoSession> PhotoSessionCollection { get; private set; }
+        public ObservableCollection<PhotoSession> PhotoSessionCollection { get; set; }
 
         public PhotoSessions()
         {
             PhotoSessionCollection = new ObservableCollection<PhotoSession>();
-            PhotoSessionCollection.Add(new PhotoSession(1, DateTime.Now));
             PhotoSessionCollection.Add(new PhotoSession(2, DateTime.Now));
+            PhotoSessionCollection.Add(new PhotoSession(1, DateTime.Now));
+            
         }
 
         public void Add(PhotoSession session)
@@ -185,7 +186,7 @@ namespace ModelLibrary
             PhotoSession existingSession = GetSession(session.Id);
             if (existingSession == null)
             {
-                PhotoSessionCollection.Add(session);
+                PhotoSessionCollection.Insert(0, session);
             }
         }
 
@@ -287,7 +288,7 @@ namespace ModelLibrary
 
         public PhotoSession CreateSession()
         {
-            uint nextId = PhotoSessionCollection.Count == 0 ? 0 : PhotoSessionCollection[PhotoSessionCollection.Count - 1].Id + 1;
+            uint nextId = PhotoSessionCollection.Count == 0 ? 0 : PhotoSessionCollection[0].Id + 1;
             return new PhotoSession(nextId, DateTime.Now);
         }
         

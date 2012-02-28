@@ -30,10 +30,14 @@ namespace ImageTracker
             if (!String.IsNullOrEmpty(imagePath))
             {
                 PhotoImage.Source = ImageStorage.CreateBitmapImage(imagePath);
+                WriteableBitmap something = null;
+                
             }
             base.OnNavigatedTo(e);
 
         }
+
+       
 
         
     }

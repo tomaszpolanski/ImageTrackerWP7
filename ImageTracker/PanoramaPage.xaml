@@ -36,6 +36,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
     
 	<phone:PhoneApplicationPage.Resources>
+		<local:DateConverter x:Key="DateConverter"/>
 		<local:WeightConverter x:Key="WeightConverter"/>
 		<DataTemplate x:Key="PhotoSessionTemplate1">
             <Grid Height="104" Width="404" Tap="Item_Tap">
@@ -43,14 +44,14 @@
 					<ColumnDefinition Width="0.275*"/>
 					<ColumnDefinition Width="0.725*"/>
 				</Grid.ColumnDefinitions>
-				<TextBlock Text="{Binding Date}" VerticalAlignment="Top" d:LayoutOverrides="Width" Grid.Column="1" Margin="8,8,-100,0"/>
-				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Width="88" Margin="8,8,0,0" Height="88" VerticalAlignment="Top"/>
-				<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" d:LayoutOverrides="Width" Grid.Column="1" Margin="8,39,-100,0" VerticalAlignment="Top"/>
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu >
                         <toolkit:MenuItem Header="remove" Click="Remove_Click"/>
                     </toolkit:ContextMenu>
                 </toolkit:ContextMenuService.ContextMenu>
+				<TextBlock Text="{Binding Date, Converter={StaticResource DateConverter}}" VerticalAlignment="Top" d:LayoutOverrides="Width" Grid.Column="1" Margin="8,8,-100,0"/>
+				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Width="88" Margin="8,8,0,0" Height="88" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" d:LayoutOverrides="Width" Grid.Column="1" Margin="8,39,-100,0" VerticalAlignment="Top"/>
             </Grid>
             
         </DataTemplate>
