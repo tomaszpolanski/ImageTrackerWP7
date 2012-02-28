@@ -21,19 +21,19 @@
 		<local:DateConverter x:Key="DateConverter"/>
 		<local:WeightConverter x:Key="WeightConverter"/>
 		<DataTemplate x:Key="PhotoSessionTemplate1">
-            <Grid Height="104" Width="404" Tap="Item_Tap">
+            <Grid Height="133" Width="404" Tap="Item_Tap">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="0.275*"/>
-					<ColumnDefinition Width="0.725*"/>
+					<ColumnDefinition Width="0.347*"/>
+					<ColumnDefinition Width="0.653*"/>
 				</Grid.ColumnDefinitions>
 				<toolkit:ContextMenuService.ContextMenu>
 					<toolkit:ContextMenu >
 						<toolkit:MenuItem Header="remove" Click="Remove_Click"/>
 					</toolkit:ContextMenu>
 				</toolkit:ContextMenuService.ContextMenu>
-				<TextBlock Text="{Binding Date, Converter={StaticResource DateConverter}}" VerticalAlignment="Top" d:LayoutOverrides="Width" Grid.Column="1" Margin="8,8,-100,0"/>
-				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Width="88" Margin="8,8,0,0" Height="88" VerticalAlignment="Top"/>
-				<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" d:LayoutOverrides="Width" Grid.Column="1" Margin="8,39,-100,0" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Date, Converter={StaticResource DateConverter}}" Grid.Column="1" Margin="8,0,0,37" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Bottom"/>
+				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Width="124" Margin="8,8,0,0" Height="117" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" d:LayoutOverrides="VerticalAlignment" Grid.Column="1" Margin="8,8,0,0" VerticalAlignment="Top" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
 			</Grid>
             
         </DataTemplate>
@@ -80,7 +80,7 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource PhotoSessionsDataSource}}">
-        <controls:Panorama Title="my application">
+        <controls:Panorama Title="image tracker" >
 
             <!--Panorama item one-->
             <controls:PanoramaItem Header="sessions">
@@ -126,7 +126,7 @@
                 			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
                 		</i:Interaction.Behaviors>
                 	</Image>
-                	<Image Margin="8,8,0,66" HorizontalAlignment="Left" Width="171" Grid.Row="1" Grid.Column="2" Source="{Binding PhotoSessionCollection[5].Photo}" Tap="Image_Tap">
+                    <Image x:Name="image5" Margin="8,8,0,66" HorizontalAlignment="Left" Width="171" Grid.Row="1" Grid.Column="2" Source="{Binding PhotoSessionCollection[5].Photo}" Tap="Image_Tap">
                 		<i:Interaction.Behaviors>
                 			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
                 		</i:Interaction.Behaviors>
