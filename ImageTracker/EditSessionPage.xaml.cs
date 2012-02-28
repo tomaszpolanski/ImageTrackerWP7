@@ -19,6 +19,7 @@ using ModelLibrary;
 using System.Xml.Serialization;
 using System.Windows.Data;
 using System.Globalization;
+using MetroInMotionUtils;
 
 namespace ImageTracker
 {
@@ -29,6 +30,7 @@ namespace ImageTracker
         public EditSessionPage()
         {
             InitializeComponent();
+            
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

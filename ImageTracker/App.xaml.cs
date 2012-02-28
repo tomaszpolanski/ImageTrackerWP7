@@ -38,6 +38,20 @@ namespace ImageTracker
             }
         }
 
+
+        private static Settings _settings = null;
+        public Settings Settings
+        {
+            get
+            {
+                if (_settings == null)
+                {
+                    _settings = Settings.Load();
+                }
+                return _settings;
+            }
+        }
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -91,6 +105,7 @@ namespace ImageTracker
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             PhotoSessions.Save();
+            Settings.Save();
         }
 
         // Code to execute if a navigation fails

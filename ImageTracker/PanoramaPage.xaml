@@ -11,6 +11,8 @@
     
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:WP7Contrib_View_Controls_Behaviors="clr-namespace:WP7Contrib.View.Controls.Behaviors;assembly=WP7Contrib.View.Controls" 
     
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+    
     x:Class="ImageTracker.PanoramaPage" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait"  Orientation="Portrait"
@@ -90,48 +92,51 @@
             </controls:PanoramaItem>
 
             <!--Panorama item two-->
-            <controls:PanoramaItem Header="gallery" Width="575" Orientation="Horizontal">
-                <Grid HorizontalAlignment="Left" Width="545">
-                	<Grid.RowDefinitions>
-                		<RowDefinition Height="0.425*"/>
-                		<RowDefinition Height="0.575*"/>
-                	</Grid.RowDefinitions>
-                	<Grid.ColumnDefinitions>
-                		<ColumnDefinition Width="0.325*"/>
-                		<ColumnDefinition Width="0.336*"/>
-                		<ColumnDefinition Width="0.339*"/>
-                	</Grid.ColumnDefinitions>
-                    <Image x:Name="image0" Margin="0,0,0,10" Source="{Binding PhotoSessionCollection[0].Photo}" HorizontalAlignment="Left" Width="171" Tap="Image_Tap">
-                		<i:Interaction.Behaviors>
-                			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
-                		</i:Interaction.Behaviors>
-                	</Image>
-                	<Image x:Name="image1" Margin="7,0,0,10" HorizontalAlignment="Left" Width="171" Grid.Column="1" Source="{Binding PhotoSessionCollection[1].Photo}" Tap="Image_Tap">
-                		<i:Interaction.Behaviors>
-                			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
-                		</i:Interaction.Behaviors>
-                	</Image>
-                	<Image x:Name="image2" Margin="8,0,0,10" HorizontalAlignment="Left" Width="171" Grid.Column="2" Source="{Binding PhotoSessionCollection[2].Photo}" Tap="Image_Tap">
-                		<i:Interaction.Behaviors>
-                			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
-                		</i:Interaction.Behaviors>
-                	</Image>
-                	<Image x:Name="image3" Margin="2,8,0,66" HorizontalAlignment="Left" Width="171" Grid.Row="1" Source="{Binding PhotoSessionCollection[3].Photo}" Tap="Image_Tap">
-                		<i:Interaction.Behaviors>
-                			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
-                		</i:Interaction.Behaviors>
-                	</Image>
-                	<Image x:Name="image4" Margin="8,8,0,66" HorizontalAlignment="Left" Width="171" Grid.Row="1" Grid.Column="1" Source="{Binding PhotoSessionCollection[4].Photo}" Tap="Image_Tap">
-                		<i:Interaction.Behaviors>
-                			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
-                		</i:Interaction.Behaviors>
-                	</Image>
-                    <Image x:Name="image5" Margin="8,8,0,66" HorizontalAlignment="Left" Width="171" Grid.Row="1" Grid.Column="2" Source="{Binding PhotoSessionCollection[5].Photo}" Tap="Image_Tap">
-                		<i:Interaction.Behaviors>
-                			<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
-                		</i:Interaction.Behaviors>
-                	</Image>
-                </Grid>
+            <controls:PanoramaItem Header="gallery" Width="575" Orientation="Horizontal" >
+                <Canvas HorizontalAlignment="Left" Width="545">
+            		<Image x:Name="image0" Source="{Binding PhotoSessionCollection[0].Photo}" HorizontalAlignment="Left" Width="171" Tap="Image_Tap" Height="171">
+            			<i:Interaction.Behaviors>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            			</i:Interaction.Behaviors>
+            		</Image>
+            		<Image x:Name="image1" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[1].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="184">
+            			<i:Interaction.Behaviors>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            			</i:Interaction.Behaviors>
+            		</Image>
+            		<Image x:Name="image2" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[2].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="368">
+            			<i:Interaction.Behaviors>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            			</i:Interaction.Behaviors>
+            		</Image>
+            		<Image x:Name="image3" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[3].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="2" Canvas.Top="189">
+            			<i:Interaction.Behaviors>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            			</i:Interaction.Behaviors>
+            		</Image>
+            		<Image x:Name="image4" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[4].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="185" Canvas.Top="189">
+            			<i:Interaction.Behaviors>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            			</i:Interaction.Behaviors>
+            		</Image>
+            		<Image x:Name="image5" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[5].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="368" Canvas.Top="189">
+            			<i:Interaction.Behaviors>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            			</i:Interaction.Behaviors>
+            		</Image>
+            	</Canvas>
+            </controls:PanoramaItem>
+            <controls:PanoramaItem Header="menu">
+            	<StackPanel>
+                    <TextBlock TextWrapping="Wrap" Text="statistics" Style="{StaticResource PhoneTextExtraLargeStyle}">
+                    	<i:Interaction.Triggers>
+                    		<i:EventTrigger EventName="MouseLeftButtonDown">
+                    			<ec:NavigateToPageAction TargetPage="/StatisticsPage.xaml"/>
+                    		</i:EventTrigger>
+                    	</i:Interaction.Triggers>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="about" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+            	</StackPanel>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>

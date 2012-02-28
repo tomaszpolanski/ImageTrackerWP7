@@ -13,16 +13,20 @@ using Microsoft.Phone.Controls;
 using ModelLibrary;
 using System.Windows.Data;
 using System.Globalization;
+using MetroInMotionUtils;
 
 namespace ImageTracker
 {
     public partial class PanoramaPage : PhoneApplicationPage
     {
+
+        private ItemFlyInAndOutAnimations _flyOutAnimation = new ItemFlyInAndOutAnimations();
         public PanoramaPage()
         {
             
             InitializeComponent();
             LayoutRoot.DataContext = (App.Current as App).PhotoSessions;
+            this.Loaded += MainPage_Loaded;
 
         }
 
@@ -46,15 +50,33 @@ namespace ImageTracker
         }
 
         private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            FrameworkElement image = (sender as FrameworkElement);
-            if (image != null)
+        {       
+
+
+            // grab the Title element
+            var exitAnimationElement = (sender as FrameworkElement);
+
+            if (exitAnimationElement != null)
             {
-                string imageIndex = image.Name.Remove(0, 5); // Removing "image"
-                NavigationService.Navigate(new Uri(String.Format("/ImagePage.xaml?imageIndex={0}",
-                    imageIndex), UriKind.Relative));
+                // animate the element, navigating to the new page when the animation finishes
+                _flyOutAnimation.ItemFlyOut(exitAnimationElement, () =>
+                {
+
+                    if (exitAnimationElement != null)
+                    {
+                        string imageIndex = exitAnimationElement.Name.Remove(0, 5); // Removing "image"
+                        NavigationService.Navigate(new Uri(String.Format("/ImagePage.xaml?imageIndex={0}",
+                            imageIndex), UriKind.Relative));
+                    }
+                });
             }
         }
+
+        private void MainPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	Dispatcher.BeginInvoke(() => _flyOutAnimation.ItemFlyIn() );
+        }
+
 
     }
     public class WeightConverter : IValueConverter
