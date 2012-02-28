@@ -45,6 +45,17 @@ namespace ImageTracker
             (App.Current as App).PhotoSessions.Remove(item);
         }
 
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            FrameworkElement image = (sender as FrameworkElement);
+            if (image != null)
+            {
+                string imageIndex = image.Name.Remove(0, 5); // Removing "image"
+                NavigationService.Navigate(new Uri(String.Format("/ImagePage.xaml?imageIndex={0}",
+                    imageIndex), UriKind.Relative));
+            }
+        }
+
     }
     public class WeightConverter : IValueConverter
     {
@@ -66,6 +77,24 @@ namespace ImageTracker
         {
             DateTime date = (DateTime)value;
             return date.ToLongDateString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class IndexToNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            int index = (int)value;
+            if (index < 0 || index >= (App.Current as App).PhotoSessions.PhotoSessionCollection.Count)
+            {
+                return "";
+            }
+            return (App.Current as App).PhotoSessions.PhotoSessionCollection[index].Date.ToShortDateString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

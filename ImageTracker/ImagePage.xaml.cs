@@ -14,6 +14,8 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using System.Windows.Media.Imaging;
 using ImageLibrary;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace ImageTracker
 {
@@ -26,18 +28,24 @@ namespace ImageTracker
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            string imagePath = NavigationContext.QueryString["image"];
-            if (!String.IsNullOrEmpty(imagePath))
+            LayoutRoot.DataContext = (App.Current as App).PhotoSessions;
+            if (NavigationContext.QueryString.ContainsKey("imageIndex"))
             {
-                PhotoImage.Source = ImageStorage.CreateBitmapImage(imagePath);
-                WriteableBitmap something = null;
+
+                string imagePath = NavigationContext.QueryString["imageIndex"];
                 
+
+                if (!String.IsNullOrEmpty(imagePath))
+                {
+                    listBox.UpdateLayout();
+                    listBox.ScrollIntoView(listBox.Items[Convert.ToInt32(imagePath)]);
+                }
             }
             base.OnNavigatedTo(e);
 
         }
 
-       
+        
 
         
     }

@@ -53,7 +53,7 @@ namespace ImageTracker
         private void PhotoField_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             PhotoSession session = (MainLayout.DataContext as PhotoSession);
-           NavigationService.Navigate( new Uri(String.Format("/ImagePage.xaml?image={0}"
+           NavigationService.Navigate( new Uri(String.Format("/SingleImagePage.xaml?image={0}"
             , session.PhotoFileName), UriKind.Relative));
         }
 		
@@ -70,7 +70,7 @@ namespace ImageTracker
             if (e.TaskResult == TaskResult.OK) // if capture completed
             {
                 BitmapImage bitmap = new BitmapImage();
-                bitmap.SetSource(e.ChosenPhoto);
+                bitmap.SetSource( ImageLibrary.ImageTransformation.RotateStream( e.ChosenPhoto, 90) );
                 PhotoSession session = (MainLayout.DataContext as PhotoSession);
                 PhotoField.Source = bitmap;
 
