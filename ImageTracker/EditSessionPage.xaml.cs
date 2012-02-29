@@ -20,6 +20,7 @@ using System.Xml.Serialization;
 using System.Windows.Data;
 using System.Globalization;
 using MetroInMotionUtils;
+using StateStorageLibrary;
 
 namespace ImageTracker
 {
@@ -46,9 +47,40 @@ namespace ImageTracker
                 }
             }
 
+            
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            {
+                object photoSession = StateStorage.LoadState(this, "PhotoSession");
+                if (photoSession != null)
+                {
+                    DateTime? datePickerDate = DatePicker.Value;
+                    dataContextSession = PhotoSession.FromXml( photoSession as string);
+                    if (datePickerDate != null && dataContextSession.Date != datePickerDate.Value)
+                    {
+                        //changed context but not saved chosen date
+                        dataContextSession.Date = datePickerDate.Value;
+                    }
+                }
+            }
             MainLayout.DataContext = dataContextSession;
-
             base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            {
+                // clear states
+                StateStorage.ResetState(this, "PhotoSession");
+            }
+            else
+            {
+                // set states
+                var photoSession = (MainLayout.DataContext as PhotoSession);
+                StateStorage.SaveState(this, photoSession.ToXml(), "PhotoSession");
+
+            }
+            base.OnNavigatedFrom(e);
         }
 		
 

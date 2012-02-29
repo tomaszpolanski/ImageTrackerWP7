@@ -15,6 +15,8 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using System.Collections.Generic;
 using System.Windows.Media.Imaging;
+using ImageLibrary;
+using System.Runtime.Serialization;
 
 namespace ModelLibrary
 {
@@ -120,6 +122,7 @@ namespace ModelLibrary
             this.PropertyChanged += new PropertyChangedEventHandler(PhotoSession_PropertyChanged); 
         }
 
+
         public void Copy(PhotoSession other)
         {
             if (other != null)
@@ -139,6 +142,28 @@ namespace ModelLibrary
                 Id = other.Id;
                 Copy(other);
             }
+        }
+
+        public string ToXml()
+        {
+
+            StringWriter writer = new StringWriter();
+
+            XmlSerializer xs = new XmlSerializer(this.GetType());
+
+            xs.Serialize(writer, this);
+            writer.Close();
+            return writer.ToString();
+
+        }
+
+        public static PhotoSession FromXml(string xml)
+        {
+            StringReader reader = new StringReader(xml);
+            XmlSerializer xs = new XmlSerializer(typeof(PhotoSession));
+            PhotoSession self = ((PhotoSession)xs.Deserialize(reader));
+            reader.Close();
+            return self;
         }
 
         void PhotoSession_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -195,6 +220,7 @@ namespace ModelLibrary
             PhotoSession existingSession = GetSession(session.Id);
             if (existingSession != null)
             {
+                ImageStorage.RemovePhoto(existingSession.PhotoFileName);
                 PhotoSessionCollection.Remove(existingSession);
             }
         }

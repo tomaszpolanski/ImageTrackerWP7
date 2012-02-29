@@ -73,12 +73,12 @@
             		<ColumnDefinition Width="0.177*"/>
             		<ColumnDefinition Width="0.823*"/>
             	</Grid.ColumnDefinitions>
-				<TextBox x:Name="WeightField" TextWrapping="Wrap" ToolTipService.ToolTip="Fat %" Text="{Binding Weight, Mode=TwoWay}" InputScope="Number" MaxLength="4" Margin="8,0,0,0" Grid.Column="1" VerticalAlignment="Top" Grid.Row="4"
+				<TextBox x:Name="WeightField" TextWrapping="Wrap"  Text="{Binding Weight, Mode=TwoWay}" InputScope="Number" MaxLength="4" Margin="8,0,0,0" Grid.Column="1" VerticalAlignment="Top" Grid.Row="4"
                          GotFocus="HideApplicationBar" 
                          LostFocus="ShowApplicationBar"/>
 				<TextBlock Margin="-30,0,8,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Grid.Column="1" ><Run Text="date"/><LineBreak/><Run/></TextBlock>
 				<TextBlock Margin="-30,6,0,0" Style="{StaticResource PhoneTextLargeStyle}" Grid.Row="3" TextWrapping="Wrap" Text="weight" Grid.Column="1" Height="51" VerticalAlignment="Top"/>
-				<toolkit:DatePicker Grid.Column="1" Margin="8,0,0,0" Grid.Row="1" Value="{Binding Date, Mode=TwoWay}"
+				<toolkit:DatePicker x:Name="DatePicker" Grid.Column="1" Margin="8,0,0,0" Grid.Row="1" Value="{Binding Date, Mode=TwoWay}"
                                     GotFocus="HideApplicationBar" 
                                     LostFocus="ShowApplicationBar" VerticalAlignment="Top"/>
 			</Grid>

@@ -156,6 +156,10 @@
       <Project>{DB88D773-0FC1-411D-B25C-8C990B2C2FF8}</Project>
       <Name>ModelLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StateStorageLibrary\StateStorageLibrary.csproj">
+      <Project>{BCA8D012-DCB8-4784-8E01-461BDA8E34A6}</Project>
+      <Name>StateStorageLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Graphics\PaleoPlate.jpg" />
