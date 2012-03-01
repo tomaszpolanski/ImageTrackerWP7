@@ -30,6 +30,18 @@ namespace ImageTracker
 
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            try
+            {
+                NavigationService.RemoveBackEntry();
+            }
+            catch
+            {
+            }
+        }
+
         private void Item_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri(String.Format("/EditSessionPage.xaml?id={0}"

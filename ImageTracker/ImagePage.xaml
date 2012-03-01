@@ -15,11 +15,7 @@
     >
 	<phone:PhoneApplicationPage.Resources>
 		<local:IndexToNameConverter x:Key="IndexToNameConverter"/>
-		<DataTemplate x:Key="PhotoSessionTemplate">
-			<StackPanel Orientation="Horizontal">
-				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Height="583" Width="438"/>
-			</StackPanel>
-		</DataTemplate>
+
 		<DataTemplate x:Key="PhotoSessionTemplate1">
 			<StackPanel>
 				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Height="582" Width="439"/>

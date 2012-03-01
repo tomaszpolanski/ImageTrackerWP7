@@ -31,7 +31,6 @@ namespace ImageTracker
         public EditSessionPage()
         {
             InitializeComponent();
-            
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -46,9 +45,9 @@ namespace ImageTracker
                     dataContextSession.CopyId( (App.Current as App).PhotoSessions.GetSession(Convert.ToUInt32(idString)));
                 }
             }
+            PhotoSession currentDataSession = (PhotoSession)MainLayout.DataContext;
 
-            
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back )
             {
                 object photoSession = StateStorage.LoadState(this, "PhotoSession");
                 if (photoSession != null)
@@ -59,6 +58,10 @@ namespace ImageTracker
                     {
                         //changed context but not saved chosen date
                         dataContextSession.Date = datePickerDate.Value;
+                    }
+                    if (currentDataSession != null)
+                    {
+                        dataContextSession.PhotoFileName = currentDataSession.PhotoFileName;
                     }
                 }
             }
@@ -71,7 +74,7 @@ namespace ImageTracker
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
             {
                 // clear states
-                StateStorage.ResetState(this, "PhotoSession");
+                StateStorage.ResetAllStates(this);
             }
             else
             {
@@ -126,6 +129,11 @@ namespace ImageTracker
         {
         	TakePhoto();
         }
+		
+		private void DefaultPhoto_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+        	TakePhoto();
+        }
 
         private void ApplicationBar_Accept(object sender, EventArgs e)
         {
@@ -166,7 +174,22 @@ namespace ImageTracker
             }
         }
 
+        
+
     }
 
+    public class StringLengthToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string text = (string)value;
+            Visibility result =  String.IsNullOrEmpty(text) ? Visibility.Visible : Visibility.Collapsed;
+            return result;
+        }
 
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

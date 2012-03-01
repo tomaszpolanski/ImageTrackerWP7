@@ -39,6 +39,17 @@
 			</Grid>
             
         </DataTemplate>
+		<DataTemplate x:Key="DataTemplateScrolling">
+			<Grid Height="133" Width="404" Tap="Item_Tap">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.347*"/>
+					<ColumnDefinition Width="0.653*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="{Binding Date, Converter={StaticResource DateConverter}}" Grid.Column="1" Margin="8,0,0,37" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Bottom"/>
+				<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" d:LayoutOverrides="VerticalAlignment" Grid.Column="1" Margin="8,8,0,0" VerticalAlignment="Top" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+			</Grid>
+            
+		</DataTemplate>
 	</phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -87,7 +98,7 @@
             <!--Panorama item one-->
             <controls:PanoramaItem Header="sessions">
                 <Grid>
-                	<WP7Contrib_View_Controls:LazyListBox Margin="8" ItemTemplate="{StaticResource PhotoSessionTemplate1}" ItemsSource="{Binding PhotoSessionCollection}"/>
+                	<WP7Contrib_View_Controls:LazyListBox Margin="8" ItemTemplate="{StaticResource DataTemplateScrolling}" ItemsSource="{Binding PhotoSessionCollection}" LoadedItemTemplate="{StaticResource PhotoSessionTemplate1}"/>
                 </Grid>
             </controls:PanoramaItem>
 
@@ -128,10 +139,23 @@
             </controls:PanoramaItem>
             <controls:PanoramaItem Header="menu">
             	<StackPanel>
-                    <TextBlock TextWrapping="Wrap" Text="statistics" Style="{StaticResource PhoneTextExtraLargeStyle}">
+                    <TextBlock TextWrapping="Wrap" Text="statistics" Style="{StaticResource PhoneTextExtraLargeStyle}" Margin="12,0,12,12">
+                    	<i:Interaction.Behaviors>
+                    		<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+                    	</i:Interaction.Behaviors>
                     	<i:Interaction.Triggers>
-                    		<i:EventTrigger EventName="MouseLeftButtonDown">
+                    		<i:EventTrigger EventName="Tap">
                     			<ec:NavigateToPageAction TargetPage="/StatisticsPage.xaml"/>
+                    		</i:EventTrigger>
+                    	</i:Interaction.Triggers>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="settings" Style="{StaticResource PhoneTextExtraLargeStyle}" Margin="12,0,12,12">
+                    	<i:Interaction.Behaviors>
+                    		<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+                    	</i:Interaction.Behaviors>
+                    	<i:Interaction.Triggers>
+                    		<i:EventTrigger EventName="Tap">
+                    			<ec:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>
                     		</i:EventTrigger>
                     	</i:Interaction.Triggers>
                     </TextBlock>

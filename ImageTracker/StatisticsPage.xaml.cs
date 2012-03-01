@@ -47,12 +47,12 @@ namespace ImageTracker
 
         private string CalculateAvarageWeight()
         {
-            return String.Format("{0:0.00} kg", PhotoSessionStatistics.AvarageWeight((App.Current as App).PhotoSessions));
+            return String.Format("{0:0.0} kg", PhotoSessionStatistics.AvarageWeight((App.Current as App).PhotoSessions));
         }
 
         private string CalculateCurrentWeightLoss()
         {
-            return String.Format("{0:0.00} kg", PhotoSessionStatistics.CurrentWeightLoss((App.Current as App).PhotoSessions));
+            return String.Format("{0:0.0} kg", PhotoSessionStatistics.CurrentWeightLoss((App.Current as App).PhotoSessions));
         }
 
         private string CalculateCurrentBMI()

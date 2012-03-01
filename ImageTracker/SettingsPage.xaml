@@ -7,7 +7,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-	x:Class="ImageTracker.SingleImagePage"
+	x:Class="ImageTracker.SettingsPage"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
@@ -39,16 +39,28 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
 	<Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="0.05*"/>
-			<RowDefinition Height="0.95*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		
 		<!--TitlePanel contains the name of the application and page title-->
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock x:Name="ApplicationTitle" Text="IMAGE TRACKER" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock x:Name="PageTitle" Text="settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+		</StackPanel>
 
 		<!--ContentPanel - place additional content here-->
-		<TextBlock x:Name="ApplicationTitle" Text="IMAGE TRACKER" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0,24,0" VerticalAlignment="Top"/>
-	<!--ContentPanel - place additional content here-->
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"/>
-		<Image x:Name="SingleImage" Margin="0,0,24,0" Grid.RowSpan="2"/>
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" MinHeight="44"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.542*"/>
+				<ColumnDefinition Width="0.458*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="height" VerticalAlignment="Center" Style="{StaticResource PhoneTextLargeStyle}"/>
+			<TextBox Grid.Column="1" Margin="43,8,44,0" TextWrapping="Wrap" d:LayoutOverrides="Width, Height" Text="{Binding Height, Mode=TwoWay}" InputScope="Number" GotFocus="HeightField_GotFocus"/>
+		</Grid>
 	</Grid>
 </phone:PhoneApplicationPage>

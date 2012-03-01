@@ -20,11 +20,22 @@ namespace ModelLibrary
                 return 0;
             }
             double sum = 0;
+            int emptyWeightSessions = 0;
             foreach (PhotoSession session in photoSessions.PhotoSessionCollection)
             {
                 sum += session.Weight;
+                if (session.Weight == 0)
+                {
+                    emptyWeightSessions++;
+                }
             }
-            return sum / photoSessions.PhotoSessionCollection.Count;
+
+            int sessionsWithWeight = photoSessions.PhotoSessionCollection.Count - emptyWeightSessions;
+            if (sessionsWithWeight > 0)
+            {
+                return sum / sessionsWithWeight;
+            }
+            return 0;
         }
 
         public static double CurrentWeightLoss(PhotoSessions photoSessions)
