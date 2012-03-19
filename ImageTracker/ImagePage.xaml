@@ -20,6 +20,17 @@
 		<local:DateToDaysConverter x:Key="DateToDaysConverter"/>
 
 		<DataTemplate x:Key="PhotoSessionTemplate1">
+			<Canvas Height="582" Width="439" Background="Gray">
+				<StackPanel Height="80" Canvas.Left="258" Canvas.Top="494" Width="173" Background="{StaticResource PhoneBackgroundBrush}">
+					<TextBlock TextWrapping="Wrap" Text="{Binding Date, Converter={StaticResource DateToDaysConverter}}" HorizontalAlignment="Right" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="26.667" Margin="0,0,5,0"/>
+					<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" VerticalAlignment="Top" Margin="8,0,5,0" HorizontalAlignment="Right" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="26.667"/>
+				</StackPanel>
+			</Canvas>
+		</DataTemplate>
+		<ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+			<VirtualizingStackPanel Orientation="Horizontal"/>
+		</ItemsPanelTemplate>
+		<DataTemplate x:Key="LoadedTemplate">
 			<Canvas Height="582" Width="439">
 				<StackPanel>
 					<Image Source="{Binding Photo}" HorizontalAlignment="Left" Height="582" Width="439"/>
@@ -30,9 +41,6 @@
 				</StackPanel>
 			</Canvas>
 		</DataTemplate>
-		<ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
-			<StackPanel Orientation="Horizontal"/>
-		</ItemsPanelTemplate>
 	</phone:PhoneApplicationPage.Resources>
 	<phone:PhoneApplicationPage.FontFamily>
 		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
@@ -79,7 +87,13 @@
 
 		<!--ContentPanel - place additional content here-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<ListBox x:Name="listBox" ItemTemplate="{StaticResource PhotoSessionTemplate1}" ItemsSource="{Binding PhotoSessionCollection}" Margin="8" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+			<WP7Contrib_View_Controls:LazyListBox x:Name="listBox" 
+			Margin="8,0,8,8" ItemTemplate="{StaticResource PhotoSessionTemplate1}" 
+			ItemsSource="{Binding PhotoSessionCollection}" 
+			ItemsPanel="{StaticResource ItemsPanelTemplate1}" 
+			LoadedItemTemplate="{StaticResource LoadedTemplate}" 
+			ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+			ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 		</Grid>
 	</Grid>
 </phone:PhoneApplicationPage>
