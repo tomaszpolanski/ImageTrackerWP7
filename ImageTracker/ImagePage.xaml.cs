@@ -49,4 +49,31 @@ namespace ImageTracker
 
         
     }
+
+    public class DateToDaysConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            TimeSpan timespan = (DateTime.Now - (DateTime)value) ;
+            if (timespan.Days > 1)
+            {
+                return String.Format("{0} days ago", timespan.Days);
+            }
+            else if (timespan.Days == 1)
+            {
+                return "yesterday";
+            }
+            else if (timespan.Days == 0)
+            {
+                return "today";
+            }
+            else return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

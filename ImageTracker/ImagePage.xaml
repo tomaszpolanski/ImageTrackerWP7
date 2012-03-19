@@ -14,12 +14,21 @@
 	shell:SystemTray.IsVisible="True"
     >
 	<phone:PhoneApplicationPage.Resources>
-		<local:IndexToNameConverter x:Key="IndexToNameConverter"/>
+
+		<local:WeightConverter x:Key="WeightConverter"/>
+
+		<local:DateToDaysConverter x:Key="DateToDaysConverter"/>
 
 		<DataTemplate x:Key="PhotoSessionTemplate1">
-			<StackPanel>
-				<Image Source="{Binding Photo}" HorizontalAlignment="Left" Height="582" Width="439"/>
-			</StackPanel>
+			<Canvas Height="582" Width="439">
+				<StackPanel>
+					<Image Source="{Binding Photo}" HorizontalAlignment="Left" Height="582" Width="439"/>
+				</StackPanel>
+				<StackPanel Height="80" Canvas.Left="258" Canvas.Top="494" Width="173" Background="{StaticResource PhoneBackgroundBrush}">
+					<TextBlock TextWrapping="Wrap" Text="{Binding Date, Converter={StaticResource DateToDaysConverter}}" HorizontalAlignment="Right" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="26.667" Margin="0,0,5,0"/>
+					<TextBlock Text="{Binding Weight, Converter={StaticResource WeightConverter}}" VerticalAlignment="Top" Margin="8,0,5,0" HorizontalAlignment="Right" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="26.667"/>
+				</StackPanel>
+			</Canvas>
 		</DataTemplate>
 		<ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
 			<StackPanel Orientation="Horizontal"/>

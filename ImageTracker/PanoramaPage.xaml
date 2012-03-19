@@ -24,6 +24,9 @@
 		<local:WeightConverter x:Key="WeightConverter"/>
 		<DataTemplate x:Key="PhotoSessionTemplate1">
             <Grid Height="133" Width="404" Tap="Item_Tap">
+            	<i:Interaction.Behaviors>
+            		<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
+            	</i:Interaction.Behaviors>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="0.347*"/>
 					<ColumnDefinition Width="0.653*"/>
@@ -107,32 +110,32 @@
                 <Canvas HorizontalAlignment="Left" Width="545">
             		<Image x:Name="image0" Source="{Binding PhotoSessionCollection[0].Photo}" HorizontalAlignment="Left" Width="171" Tap="Image_Tap" Height="171">
             			<i:Interaction.Behaviors>
-            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
             			</i:Interaction.Behaviors>
             		</Image>
             		<Image x:Name="image1" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[1].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="184">
             			<i:Interaction.Behaviors>
-            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
             			</i:Interaction.Behaviors>
             		</Image>
             		<Image x:Name="image2" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[2].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="368">
             			<i:Interaction.Behaviors>
-            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
             			</i:Interaction.Behaviors>
             		</Image>
             		<Image x:Name="image3" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[3].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="2" Canvas.Top="189">
             			<i:Interaction.Behaviors>
-            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
             			</i:Interaction.Behaviors>
             		</Image>
             		<Image x:Name="image4" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[4].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="185" Canvas.Top="189">
             			<i:Interaction.Behaviors>
-            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
             			</i:Interaction.Behaviors>
             		</Image>
             		<Image x:Name="image5" HorizontalAlignment="Left" Width="171" Source="{Binding PhotoSessionCollection[5].Photo}" Tap="Image_Tap" Height="171" Canvas.Left="368" Canvas.Top="189">
             			<i:Interaction.Behaviors>
-            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour/>
+            				<WP7Contrib_View_Controls_Behaviors:TiltBehaviour TiltFactor="5"/>
             			</i:Interaction.Behaviors>
             		</Image>
             	</Canvas>

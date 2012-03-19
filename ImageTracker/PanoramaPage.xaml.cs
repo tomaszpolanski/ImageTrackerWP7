@@ -26,21 +26,9 @@ namespace ImageTracker
             
             InitializeComponent();
             LayoutRoot.DataContext = (App.Current as App).PhotoSessions;
-            this.Loaded += MainPage_Loaded;
 
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            try
-            {
-                NavigationService.RemoveBackEntry();
-            }
-            catch
-            {
-            }
-        }
 
         private void Item_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -70,23 +58,11 @@ namespace ImageTracker
 
             if (exitAnimationElement != null)
             {
-                // animate the element, navigating to the new page when the animation finishes
-                _flyOutAnimation.ItemFlyOut(exitAnimationElement, () =>
-                {
 
-                    if (exitAnimationElement != null)
-                    {
-                        string imageIndex = exitAnimationElement.Name.Remove(0, 5); // Removing "image"
-                        NavigationService.Navigate(new Uri(String.Format("/ImagePage.xaml?imageIndex={0}",
-                            imageIndex), UriKind.Relative));
-                    }
-                });
+                string imageIndex = exitAnimationElement.Name.Remove(0, 5); // Removing "image"
+                NavigationService.Navigate(new Uri(String.Format("/ImagePage.xaml?imageIndex={0}",
+                    imageIndex), UriKind.Relative));
             }
-        }
-
-        private void MainPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-        	Dispatcher.BeginInvoke(() => _flyOutAnimation.ItemFlyIn() );
         }
 
 
@@ -96,7 +72,7 @@ namespace ImageTracker
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double weight = (double)value;
-            return String.Format("{0} kg", weight);
+            return String.Format("{0:0.0} kg", weight);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -119,21 +95,4 @@ namespace ImageTracker
         }
     }
 
-    public class IndexToNameConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            int index = (int)value;
-            if (index < 0 || index >= (App.Current as App).PhotoSessions.PhotoSessionCollection.Count)
-            {
-                return "";
-            }
-            return (App.Current as App).PhotoSessions.PhotoSessionCollection[index].Date.ToShortDateString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

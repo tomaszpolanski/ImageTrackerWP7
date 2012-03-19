@@ -45,3 +45,6 @@ ModelLibrary\Bin\
 /ImageTracker/Bin/Debug/Microsoft.Expression.Interactions.xml
 /StateStorageLibrary/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 /StateStorageLibrary/obj/Debug/StateStorageLibrary.csproj.FileListAbsolute.txt
+/ImageTracker/obj/Debug/LoginPage.g.cs
+/ImageTracker/obj/Debug/SettingsPage.g.cs
+/ImageTracker/obj/Debug/SettingsPage.g.i.cs

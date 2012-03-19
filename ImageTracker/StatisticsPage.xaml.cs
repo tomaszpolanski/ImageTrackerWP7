@@ -27,9 +27,11 @@ namespace ImageTracker
         {
             SpaceUsed.Text = CalculateSpaceUsed();
             Sessions.Text = CalculateSessions();
-            AvaWeight.Text = CalculateAvarageWeight();
+            CurrentWeight.Text = CalculateCurrentWeight();
             CurrentWeightLoss.Text = CalculateCurrentWeightLoss();
             CurrentBMI.Text = CalculateCurrentBMI();
+            HeighestWeight.Text = CalculateHighestWeight();
+            LowestWeight.Text = CalculateLowestWeight();
         }
 
 
@@ -50,6 +52,11 @@ namespace ImageTracker
             return String.Format("{0:0.0} kg", PhotoSessionStatistics.AvarageWeight((App.Current as App).PhotoSessions));
         }
 
+        private string CalculateCurrentWeight()
+        {
+            return String.Format("{0:0.0} kg", PhotoSessionStatistics.CurrentWeight((App.Current as App).PhotoSessions));
+        }
+
         private string CalculateCurrentWeightLoss()
         {
             return String.Format("{0:0.0} kg", PhotoSessionStatistics.CurrentWeightLoss((App.Current as App).PhotoSessions));
@@ -59,6 +66,18 @@ namespace ImageTracker
         {
             App app = (App.Current as App);
             return String.Format("{0:0.00}", PhotoSessionStatistics.CurrentBMI(app.PhotoSessions, app.Settings.Height));
+        }
+
+        private string CalculateHighestWeight()
+        {
+            App app = (App.Current as App);
+            return String.Format("{0:0.0} kg", PhotoSessionStatistics.HighestWeight(app.PhotoSessions));
+        }
+
+        private string CalculateLowestWeight()
+        {
+            App app = (App.Current as App);
+            return String.Format("{0:0.0} kg", PhotoSessionStatistics.LowestWeight(app.PhotoSessions));
         }
     }
 }

@@ -47,6 +47,15 @@ namespace ModelLibrary
             return photoSessions.PhotoSessionCollection[photoSessions.PhotoSessionCollection.Count - 1].Weight - photoSessions.PhotoSessionCollection[0].Weight;
         }
 
+        public static double CurrentWeight(PhotoSessions photoSessions)
+        {
+            if (photoSessions.PhotoSessionCollection.Count == 0)
+            {
+                return 0;
+            }
+            return photoSessions.PhotoSessionCollection[0].Weight;
+        }
+
         public static double CurrentBMI(PhotoSessions photoSessions, double height)
         {
             if (photoSessions.PhotoSessionCollection.Count == 0)
@@ -54,6 +63,34 @@ namespace ModelLibrary
                 return 0;
             }
             return photoSessions.PhotoSessionCollection[0].Weight / (double)(Math.Pow(height / 100, 2));
+        }
+
+        public static double HighestWeight(PhotoSessions photoSessions)
+        {
+            if (photoSessions.PhotoSessionCollection.Count == 0)
+            {
+                return 0;
+            }
+            double max = photoSessions.PhotoSessionCollection[0].Weight;
+            foreach (PhotoSession session in photoSessions.PhotoSessionCollection)
+            {
+                max = Math.Max(max, session.Weight);
+            }
+            return max;
+        }
+
+        public static double LowestWeight(PhotoSessions photoSessions)
+        {
+            if (photoSessions.PhotoSessionCollection.Count == 0)
+            {
+                return 0;
+            }
+            double min = photoSessions.PhotoSessionCollection[0].Weight;
+            foreach (PhotoSession session in photoSessions.PhotoSessionCollection)
+            {
+                min = Math.Min(min, session.Weight);
+            }
+            return min;
         }
     }
 }
